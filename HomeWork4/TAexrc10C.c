@@ -12,14 +12,17 @@ final do ano.*/
 #include <stdio.h>  
  
 int main(){
-    int Nfitas;
-    double valorFita, faturamento, ganhoMultas;
+    int Nfitas, FitasAlugadas, FitasDevolvidas;
+    double valorFita;
     scanf("%d %lf", &Nfitas, &valorFita);
-    faturamento = (Nfitas/3.0) * valorFita;
-    printf("%lf\n", faturamento);
-    ganhoMultas = ((Nfitas/3.0)/10.0) * (valorFita*0.1);
-    printf("%lf\n", ganhoMultas);
-    Nfitas -= (Nfitas*0.02) - (Nfitas*0.02)/10;
-    printf("%d\n", Nfitas); 
+    FitasAlugadas = Nfitas/3;
+    FitasDevolvidas = FitasAlugadas/10;
+    // Faturamento da locadora
+    printf("%lf\n", FitasAlugadas * valorFita);
+    // Valor ganho com multas por mês
+    printf("%lf\n", FitasDevolvidas * (valorFita*0.1));
+    // Quantidades de fitas no final do ano
+    Nfitas -= (Nfitas*2/100) - (Nfitas*2/100)/10;
+    printf("%d", Nfitas); 
     return 0;
 }
