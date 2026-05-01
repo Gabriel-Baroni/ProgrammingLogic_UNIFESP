@@ -12,9 +12,6 @@ int main(){
     for(i=1, x=2, z=3; z<num; i++, x++, z++){
         if(i*x*z == num){
             boolean = 1; 
-            break;
-        } else {
-            boolean = 0; 
         }
     }
     if(boolean == 1){

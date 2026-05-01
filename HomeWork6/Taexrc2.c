@@ -3,15 +3,16 @@
 
 #include <stdio.h>
 int main (){
-    int num, i;
-    int teste = 0; // Variável booleana
+    int num, i = 2; // Começo com 2, pois todo número é divísivel por 1, assim, sempre daria "nao"
+    int teste = 1; // Variável booleana
     scanf("%d", &num);
-    for(i=2; i<=num; i++){
-        if(num%i == 0 &&  i != num){
+    while(i<=num && teste != 0){
+        if(num%i == 0 && i != num){
             teste = 0;
-            break;
+            i++;
         } else {
             teste = 1;
+            i++;
         }
     }
     if(teste==0){
