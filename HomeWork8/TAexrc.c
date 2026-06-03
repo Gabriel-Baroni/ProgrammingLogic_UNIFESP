@@ -22,5 +22,5 @@ int main(){
             printf("%d ", matriz[j][i]); 
         }
     }
-    return 0
-    }
+    return 0;
+}
