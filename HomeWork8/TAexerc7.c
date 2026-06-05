@@ -15,14 +15,14 @@ int main(){
     //Pegando a coordenada de cada disparo e verificando se atingiu
     for (i=0; i<K; i++){
         scanf("%d %d", &L, &C);
-        if(tabuleiro[L-1][C-1] == '#' && tabuleiro[L-1][C] != '#' && tabuleiro [L-1][C-2] != '#' && tabuleiro[L][C-1] != '#' && tabuleiro[L-2][C-1] != '#'){
+        if(tabuleiro[L-1][C-1] == '#'){
             navios+=1;
             tabuleiro[L-1][C-1] == '.'; 
         } else{
             tabuleiro[L-1][C-1] == '.';
         }
     }
-    printf("%zu", sizeof(navios)); 
+    printf("%d", navios); 
 
     return 0; 
 }
