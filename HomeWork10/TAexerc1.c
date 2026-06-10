@@ -7,7 +7,7 @@
 
 #include <stdio.h>
 #define MAX 100
-void menorMaior(int N, int vet[], int *min, int *max ){ //Recebe como parametro endereços de memoria, e um procedimento por referencia
+void menorMaior(int N, int vet[], int *min, int *max ){ //Recebe como parametro endereços de memoria. E um procedimento por referencia
     int i;
     *min=vet[0];
     *max=vet[0];
