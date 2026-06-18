@@ -6,7 +6,8 @@
 #include <stdio.h>
  void binario(int n){
     int aux = 0; 
-    aux = n/2;
+    aux 
+    = n/2;
     if(aux > 0){ //Se a divisao de N/2 for maior que zero, significa que as divisões ainda nao chegaram no final
         binario(aux); //Chama a própia função com o valor n/2 
         printf("%d", n%2); //Só será impresso quando as chamadas posteriores forem encerradas

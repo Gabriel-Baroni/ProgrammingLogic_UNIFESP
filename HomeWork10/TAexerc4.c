@@ -15,7 +15,8 @@ void interseccao (int M, int A[MAX], int N, int B[MAX], int *P, int *C){
             }
         }
         if(jatem==0 && nosDois==1){ //Se o elemento ainda nao esta no C e possui no A e no B, adiciona no C
-            C[*P]=A[i];
+            *(C+*P) = A[i];
+            //C[*P]=A[i];
             *P+=1; 
         }
         jatem=0; 
