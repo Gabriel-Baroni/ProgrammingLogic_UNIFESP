@@ -8,6 +8,8 @@
 #include <stdio.h>
 #include <math.h>
 #define jogadores 3
+
+
 //Criacao da variavel tipo atleta
 typedef struct{
     char nome [50];
@@ -68,8 +70,8 @@ void ordenarGols(Atleta atletas[jogadores]){
 }
 
 void alterarDados(Atleta *atleta){
-    scanf("%s", (*atleta).nome);
-    scanf("%d", &(*atleta).idade);
+    scanf("%s", atleta->nome); //Posso usar essa outra sintaxe tambem, aqui o * do ponteiro esta embutido na seta
+    scanf("%d", &(*atleta).idade); //Aqui eu faco manualmente, entao o & esta sendo usado para pegar o endereco de memoria do campo idade da struct atleta atraves do ponteiro
     scanf("%f", &(*atleta).altura);
     scanf("%f", &(*atleta).peso);
     scanf("%d", &(*atleta).gols);
@@ -79,7 +81,7 @@ int main(){
     int i;
     Atleta atletas[jogadores]; //Crio um vetor do tipo atleta
     for(i=0; i<jogadores; i++){ //Preencho o vetor com as informações de 8 atletas
-        scanf("%s", &atletas[i].nome);
+        scanf("%s", atletas[i].nome);
         scanf("%d", &atletas[i].idade);
         scanf("%f", &atletas[i].altura);
         scanf("%f", &atletas[i].peso);
