@@ -86,4 +86,5 @@ int main(){
     mediaPartida(matriz, notasPartidas); 
     atletaRegular(matriz, notasAtletas); 
     melhorNota(matriz); 
+    return 0; 
 }

@@ -27,4 +27,5 @@ int main(){
     for(i=0; i<n; i++){ //Percorre o vetor com o valor inserido
         printf("%d ", v[i]); 
     }
+    return 0; 
 }

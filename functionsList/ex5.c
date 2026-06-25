@@ -2,7 +2,7 @@
 // matriz auxiliar.
 #include <stdio.h>
 void transpor ( int m [4][4]){ //Passar a matriz como parametro é o mesmo que passar um ponterio, ou seja, nao preciso de uma mariz auxiliar
-    int i, j, aux=0;
+    int i, j, aux=0; //Declaracao de variavel auxiliar para servir como memoria temporaria
     for(i=0; i<4; i++){
         for(j=i+1; j<4; j++){ //j inicia com i+1, para conseguir trocar de lugar com o elemento da linha com o uso de uma variável auxiliar 
             aux = m[i][j];
@@ -24,9 +24,9 @@ int main(){
     int m[4][4], i, j;
     for(i=0;i<4; i++){
         for(j=0; j<4; j++){
-            scanf("%d", &m[i][j]);
+            scanf("%d", &m[i][j]); //Preenche a matriz
         }
     }
-    transpor(m); 
+    transpor(m); //Chamada do procedimento
     return 0; 
 }

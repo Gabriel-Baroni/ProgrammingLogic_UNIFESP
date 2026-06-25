@@ -1,3 +1,10 @@
+// Implemente um sistema para classificação de equipes.
+// A ordenação deve obedecer:
+// 1. Maior número de pontos;
+// 2. Maior número de vitórias;
+// 3. Maior saldo de gols;
+// 4. Maior número de gols pró.
+
 #include <stdio.h>
 #define MAX 100
 typedef struct {
@@ -17,27 +24,34 @@ void ordenarEquipes(Equipe lista[MAX], int tam){
     for(i=0; i<tam-1; i++){
         for(j=0; j<tam-1; j++){
 
+            //Primeiro cirterio, maior numero de pontos
             if(lista[j].pontos < lista[j+1].pontos){
                 aux = lista[j];
                 lista[j] = lista[j+1]; 
                 lista[j+1] = aux; 
             } 
+            //Se tiver a mesma quantidade de pontos
             else if(lista[j].pontos == lista[j+1].pontos){
 
+                //Segundo criterio, maior numero de vitorias
                 if(lista[j].vitorias < lista[j+1].vitorias){
                     aux = lista[j];
                     lista[j] = lista[j+1]; 
                     lista[j+1] = aux;
                 } 
+                //Se tiver o mesmo numero de vitorias
                 else if (lista[j].vitorias == lista[j+1].vitorias){
 
+                    //Terceiro criterio, saldo de gols
                      if(lista[j].saldoGols < lista[j+1].saldoGols){
                         aux = lista[j];
                         lista[j] = lista[j+1]; 
                         lista[j+1] = aux; 
                     } 
+                    //Se tiver o mesmo saldo de gols
                     else if(lista[j].saldoGols == lista[j+1].saldoGols){
 
+                        //Quarto criterio, maior numero de gols a favor do time
                         if(lista[j].golsPro < lista[j+1].golsPro){
                             aux = lista[j];
                             lista[j] = lista[j+1]; 
@@ -60,6 +74,7 @@ int main(){
     int nEquipes, i; 
     printf("Digite quantas equipes deseja cadastrar: ");
     scanf("%d", &nEquipes); 
+    //Preenche com os dados de cada equipe
     for(i=0; i<nEquipes; i++){
         printf("\nDigite o nome da equipe: ");
         scanf("%s", lista[i].nome);
@@ -76,8 +91,7 @@ int main(){
         lista[i].saldoGols = lista[i].golsPro - lista[i].golsContra; 
         lista[i].pontos = (3 * lista[i].vitorias) + lista[i].empates; 
     }
+    //Chama o procedimento
     ordenarEquipes(lista, nEquipes); 
-
-
     return 0; 
 }

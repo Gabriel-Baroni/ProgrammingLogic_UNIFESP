@@ -1,3 +1,9 @@
+// // Implemente um sistema capaz de cadastrar alunos, calcular médias, calcular média geral recursiva-
+// mente, encontrar maior e menor média, ordenar por média, listar aprovados e reprovados e alterar
+// notas usando ponteiros.
+// Critério:
+// Aprovado =⇒ (média ≥ 6.0) ∧ (faltas ≤ 15)
+
 #include <stdio.h>
 #include <string.h>
 #define MAX 100
@@ -12,7 +18,8 @@ typedef struct {
 
 void cadastrar(Aluno lista[MAX], int nAlunos){
     int  i, j;
-    float soma = 0.0; 
+    float soma = 0.0;
+    //Preenche o vetor lista (do tipo aluno) com os dados de cada aluno 
     for(i=0; i<nAlunos; i++){
         soma = 0.0; 
         printf("\nDigite o nome do aluno: ");
@@ -30,7 +37,7 @@ void cadastrar(Aluno lista[MAX], int nAlunos){
     }
 }
 
-float mediaGeralRecursiva (Aluno lista[MAX], int tam){
+float mediaGeralRecursiva (Aluno lista[MAX], int tam){ //Essa função soma todas as medias de forma recursiva, a divisao sera feita na main
     if(tam==0){
         return lista[0].media; 
     } else{
@@ -43,10 +50,12 @@ void maiorMenorMedia(Aluno lista[MAX],  int tam){
     int i, indiceMin=0, indiceMax=0;
     float maior = lista[0].media, menor = lista[0].media;
     for(i=1; i<tam; i++){
+        //Verifica a maior media
         if(lista[i].media > maior){
             maior = lista[i].media; 
             indiceMax = i; 
         }
+        //Verifica a menor media
         if(lista[i].media < menor){
             menor = lista[i].media; 
             indiceMin = i; 
@@ -59,7 +68,7 @@ void maiorMenorMedia(Aluno lista[MAX],  int tam){
 
 void ordenarMedia(Aluno lista[MAX], int tam){
     int i, j;
-    Aluno aux = lista[0];
+    Aluno aux = lista[0]; //Declaracao da avriavel auxiliar do tipo Aluno
     for(i=0; i<tam-1; i++){
         for(j=0; j<tam-1; j++){
             if(lista[j].media > lista[j+1].media){
@@ -75,9 +84,10 @@ void ordenarMedia(Aluno lista[MAX], int tam){
 }
 
 void listarAprovados_Reprovados(Aluno lista[MAX], int tam){
-    Aluno aprovados[MAX], reprovados[MAX];
+    Aluno aprovados[MAX], reprovados[MAX]; //Cria o vetor dos aprovados e dos reprovados
     int i, apro = 0, repro =0;
     for(i=0; i<tam; i++){
+        //Verifica cada aluno utilizando os criterios
         if(lista[i].media>=6.0 && lista[i].faltas <=15){
             aprovados[apro] = lista[i];
             apro+=1;
@@ -127,6 +137,4 @@ int main(){
     printf("-----Alterar nota de aluno-----");
     alterarNota(minhaLista, nAlunos); 
     return 0; 
-
-
 }

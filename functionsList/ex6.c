@@ -10,7 +10,7 @@
 #define jogadores 3
 
 
-//Criacao da variavel tipo atleta
+//Criacao do registro atleta
 typedef struct{
     char nome [50];
     int idade ;
@@ -55,13 +55,13 @@ void maisNovo(Atleta atletas[jogadores]){
 //Procedimento para ordenar em ordem descrescente os jogadores pelo numero de gols
 void ordenarGols(Atleta atletas[jogadores]){
     int i;
-    Atleta aux; 
+    Atleta aux; //Declaracao de variavel auxiliar do tipo Atleta para servir como memoria temporaria
     for(i=jogadores-1; i>0; i--){
         if(atletas[i].gols > atletas[i-1].gols){
             aux = atletas[i-1]; 
             atletas[i-1] = atletas[i];
             atletas[i] = aux; 
-            i= jogadores; // Volta o laco para o incio, garantindo que todos os elementos estejam ordenados
+            i= jogadores; //Volta o laco para o incio, garantindo que todos os elementos estejam ordenados
         }
     }
     for(i=0; i<jogadores; i++){

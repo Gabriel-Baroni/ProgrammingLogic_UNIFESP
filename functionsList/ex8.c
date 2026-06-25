@@ -1,3 +1,6 @@
+// Crie funções para buscar livros por autor, listar disponíveis, realizar empréstimo, registrar devolu-
+// ção e encontrar o livro mais antigo.
+
 #include <stdio.h>
 #include <string.h>
 #define MAX 100
@@ -41,7 +44,7 @@ int listarDisponiveis(Livro lista[MAX], int tam, Livro disponiveis[MAX]){
 void emprestimo(Livro lista[MAX], int tam){
     int i;
     char livroEmprestado [50];
-    int temLivro=0;  
+    int temLivro=0;  //Boolean
     fgets(livroEmprestado, 50, stdin); 
     for(i=0; i<tam; i++){
         if(strcmp(livroEmprestado, lista[i].titulo) == 0){
@@ -61,7 +64,7 @@ void emprestimo(Livro lista[MAX], int tam){
 void devolucao(Livro lista[MAX], int tam){
     int i;
     char livroDevolvido [50];
-    int temLivro=0;  
+    int temLivro=0;  //Booelan
     fgets(livroDevolvido, 50, stdin); 
     for(i=0; i<tam; i++){
         if(strcmp(livroDevolvido, lista[i].titulo) == 0){
@@ -104,6 +107,7 @@ int main(){
         scanf("%d", &livros[i].emprestado); 
         
     }
+    //Chamada de procedimentos e funcoes
     buscarLivro(livros, n);
     nDisponivel=listarDisponiveis(livros, n, disponiveis);
     for(i=0; i<nDisponivel; i++){
