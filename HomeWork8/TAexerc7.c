@@ -42,7 +42,10 @@
 #include <stdio.h>
 #define MAX 100
 int main(){
-    int M, N, K, L, C, i, j, z, navios=0, colunaAtual, linhaAtual;
+    int M, N, K, L, C, i, j, z, navios=0;
+    int filaL[MAX * MAX]; 
+    int filaC[MAX * MAX];
+    int inicio = 0, fim = 0;
     int comVida = 0; //boolean
     char tabuleiro[MAX][MAX];
     scanf("%d %d", &M, &N);
@@ -62,34 +65,82 @@ int main(){
         }
     }
  
-    //Verificando os navios destruidos
-    for(i=0; i<M; i++){
-        for(j=0; j<N; j++){
-            if(tabuleiro[i][j] != '.'){ //Siginifica qeu achou ou uma parte atingida X ou uma parte intacta #
-                colunaAtual = j; 
-            
-                while(colunaAtual <N && tabuleiro[i][colunaAtual] != '.'){ //A partir do indice da parte atingida ou intacta, verifica se tem alguma parte intacta na mesma linha (para direita)
-                    if(tabuleiro[i][colunaAtual] == '#'){
-                        comVida = 1; 
+  // Verificando os navios destruidos
+    for (i = 0; i < M; i++) {
+        for (j = 0; j < N; j++) {
+            if (tabuleiro[i][j] != '.') { // Achou um pedaço de navio (pode ser 'X' ou '#')
+
+                comVida = 0; 
+                inicio = 0;
+                fim = 0;
+
+                // Guarda a primeira peça do navio na fila
+                filaL[fim] = i;
+                filaC[fim] = j;
+                fim++; // Aumenta o tamanho da fila
+                
+                // Verifica se essa peça específica estava viva
+                if (tabuleiro[i][j] == '#') {
+                    comVida = 1;
+                }
+                // Apaga do tabuleiro para não contarmos a mesma peça duas vezes
+                tabuleiro[i][j] = '.'; 
+                
+                while (inicio < fim) {
+                    // Pega as coordenadas da peça atual e avança o "inicio" (riscando da lista)
+                    int lAtual = filaL[inicio];
+                    int cAtual = filaC[inicio];
+                    inicio++; 
+                    
+                    //Olha a coordenada de cima
+                    if (lAtual > 0 && tabuleiro[lAtual - 1][cAtual] != '.') {
+                        if (tabuleiro[lAtual - 1][cAtual] == '#'){
+                            comVida = 1;
+                        }
+                        tabuleiro[lAtual - 1][cAtual] = '.'; 
+                        filaL[fim] = lAtual - 1;             
+                        filaC[fim] = cAtual;
+                        fim++;
                     }
-                    tabuleiro[i][colunaAtual] = '.';
-                    colunaAtual++; 
- 
-                }
-                linhaAtual = i + 1; //i+1 pois o while de cima ja passou pela posicao i j  
-                while(linhaAtual <M && tabuleiro[linhaAtual][j] != '.'){ //A partir do indice da parte atingida ou intacta, verifica se tem alguma parte intacta na mesma coluna (para baixo)
-                    if(tabuleiro[linhaAtual][j] == '#'){
-                        comVida = 1; 
+                    
+                    //Olha a coordenada de baixo
+                    if (lAtual < M - 1 && tabuleiro[lAtual + 1][cAtual] != '.') {
+                        if (tabuleiro[lAtual + 1][cAtual] == '#') {
+                            comVida = 1;
+                        }
+                        tabuleiro[lAtual + 1][cAtual] = '.';
+                        filaL[fim] = lAtual + 1;
+                        filaC[fim] = cAtual;
+                        fim++;
                     }
-                    tabuleiro[linhaAtual][j] = '.';
-                    linhaAtual++; 
- 
+                    
+                    // Olha a coordenada da esquerda
+                    if (cAtual > 0 && tabuleiro[lAtual][cAtual - 1] != '.') {
+                        if (tabuleiro[lAtual][cAtual - 1] == '#') {
+                             comVida = 1;
+                        }
+                        tabuleiro[lAtual][cAtual - 1] = '.';
+                        filaL[fim] = lAtual;
+                        filaC[fim] = cAtual - 1;
+                        fim++;
+                    }
+                    
+                    //Olha a coordenada da direita
+                    if (cAtual < N - 1 && tabuleiro[lAtual][cAtual + 1] != '.') {
+                        if (tabuleiro[lAtual][cAtual + 1] == '#') {
+                            comVida = 1;
+                        }
+                        tabuleiro[lAtual][cAtual + 1] = '.';
+                        filaL[fim] = lAtual;
+                        filaC[fim] = cAtual + 1;
+                        fim++;
+                    }
+                } 
+                
+                //Se o navio for completamente destruido soma na variavel navios
+                if (comVida == 0) {
+                    navios++;
                 }
-                //Se o navio foi completamente destruido, soma mais 1
-                if(comVida == 0){
-                    navios++; 
-                }
-                comVida = 0;
             }
         }
     }
